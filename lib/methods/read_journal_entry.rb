@@ -21,6 +21,7 @@ def select_entry
     else 
         journal_type = prompt.select("Which journal from #{@date} would you like to see?", ["Morning", "Afternoon", "Night"])
         @selected_entry = @user_date_entries.select { |entry| entry.journal.name == journal_type }
+        #add in fucntionality for if journal doesn't exist 
     end 
 end 
 
