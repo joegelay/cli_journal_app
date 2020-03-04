@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 2020_03_03_194040) do
 
   create_table "entries", force: :cascade do |t|
     t.text "content"
+    t.integer "mood"
     t.integer "user_id"
     t.integer "journal_id"
     t.datetime "created_at", precision: 6, null: false

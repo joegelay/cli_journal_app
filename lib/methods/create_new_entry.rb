@@ -1,5 +1,3 @@
-
-
 def create_new_entry 
     prompt = TTY::Prompt.new
     selection = prompt.select("Right on! What kind of journal would you like to create?", ["Morning", "Afternoon", 
@@ -10,6 +8,8 @@ def create_new_entry
 end 
 
 def morning_entry 
+
+    morning = Journal.all.find { |journal| journal.name == "Morning" }
 
     content = []
 
@@ -24,15 +24,11 @@ def morning_entry
     outlook_response = prompt.ask("What are you looking forward to today?")
     content << "What are you looking forward to today?: " + outlook_response
 
+    mood_response = prompt.select("How are you feeling (1-5)?", [1,2,3,4,5])
     
+    Entry.create(content: content.join("\n"), mood: mood_response, user: @name_check, journal: morning)
 
-
-    puts content
-
-
-
-
-    # entry = Entry.create(content: content.join(" "), user: name_check, journal: morning)
+    puts "Thank you for sharing! Have a great day!"
 
 end 
 

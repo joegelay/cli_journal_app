@@ -8,11 +8,11 @@ class Cli
         puts "Hello! What is your full name?" 
         user_name = gets.chomp
         
-        name_check = User.all.find { |user| user.name.downcase == user_name.downcase }
+        @name_check = User.all.find { |user| user.name.downcase == user_name.downcase }
 
         prompt = TTY::Prompt.new
         
-        if name_check
+        if @name_check
             puts "Welcome back, #{user_name}!"
             selection = prompt.select("What would you like to do?", ["Create a new journal entry", "Read a past journal entry", 
                 "Update a journal entry", "Delete a journal entry"])
@@ -25,7 +25,6 @@ class Cli
             puts "Whatsup, #{new_user.name}?!"
         end     
 
+        binding.pry
     end 
-
-
 end 
