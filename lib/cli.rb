@@ -34,5 +34,6 @@ class Cli
         elsif selection == "Delete a journal entry"
             delete_journal_entry 
         end 
+        # update to switch case 
     end 
 end 
