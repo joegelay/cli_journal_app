@@ -8,7 +8,9 @@ class Cli
         puts "Hello! What is your full name?" 
         user_name = gets.chomp
         
-        @name_check = User.all.find { |user| user.name.downcase == user_name.downcase }
+        # @name_check = User.find_or_create_by(name: user_name)
+        @name_check = User.find { |user| user.name.downcase == user_name.downcase }
+        # want to figure out a way to find or create a user, while accounting for casing. 
 
         prompt = TTY::Prompt.new
         
@@ -25,6 +27,6 @@ class Cli
             puts "Whatsup, #{new_user.name}?!"
         end     
 
-        binding.pry
+        # binding.pry
     end 
 end 
