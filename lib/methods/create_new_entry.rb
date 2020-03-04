@@ -69,7 +69,7 @@ def night_entry
 
     prompt = TTY::Prompt.new
     night_response = prompt.ask("What were three amazing things that happened today?")
-    content << "What were three amazing thigns that happened today?: " + night_response
+    content << "What were three amazing things that happened today?: " + night_response
 
     dinner_response = prompt.select("Have you eaten dinner?", ["Yes", "Not yet."])
     content << "Have you eaten dinner?: " + dinner_response

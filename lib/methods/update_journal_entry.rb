@@ -1,7 +1,7 @@
 def update_journal_entry 
     prompt = TTY::Prompt.new
     read_journal_entry 
-    
+
     section_to_update = prompt.select("Which section would you like to update", ["Content", "Mood"])
     if section_to_update == "Mood"
         puts "Please update your mood score below..."
@@ -50,10 +50,26 @@ def update_journal_entry
                 end 
                 @selected_entry[0].save
             end 
-        end
-    
-        
-       
-    end 
+        else 
+            question_to_update = prompt.select("Which question would you like to change your repsonse to?", 
+            ["What were three amazing things that happened today?", "Have you eaten dinner?"])
+            if question_to_update == "What were three amazing things that happened today?"
+                night_response = prompt.ask("What were three amazing things that happened today?")
+                @selected_entry[0].content[0] = "What were three amazing things that happened today?: " + night_response
+                @selected_entry[0].save
+            else 
+                dinner_response = prompt.select("Have you eaten dinner?", ["Yes", "Not yet."])
+                @selected_entry[0].content[1] = "Have you eaten dinner?: " + dinner_response
 
+                if dinner_response == "Yes"
+                dinner_response_two = prompt.ask("What did you eat?")
+                @selected_entry[0].content[2] = "What did you eat?: " + dinner_response_two
+                else 
+                    @selected_entry[0].content[2] = ""
+                    puts "Go eat!"
+                end 
+                @selected_entry[0].save
+            end 
+        end   
+    end 
 end 
