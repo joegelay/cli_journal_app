@@ -30,7 +30,7 @@ def morning_entry
 
     mood_response = prompt.select("How are you feeling (1-5)?", [1,2,3,4,5])
     
-    Entry.create(content: content.join("\n"), mood: mood_response, user: @current_user, journal: morning)
+    new_entry = Entry.create(content: content, mood: mood_response, user: @current_user, journal: morning)
 
     puts "Thank you for sharing! Have a great day!"
 end 
@@ -57,7 +57,7 @@ def afternoon_entry
 
     mood_response = prompt.select("How are you feeling (1-5)?", [1,2,3,4,5])
     
-    Entry.create(content: content.join("\n"), mood: mood_response, user: @current_user, journal: afternoon)
+    Entry.create(content: content, mood: mood_response, user: @current_user, journal: afternoon)
 
     puts "Keep on keeping on!"
 end 
@@ -83,7 +83,7 @@ def night_entry
 
     mood_response = prompt.select("How are you feeling (1-5)?", [1,2,3,4,5])
     
-    Entry.create(content: content.join("\n"), mood: mood_response, user: @current_user, journal: night)
+    Entry.create(content: content, mood: mood_response, user: @current_user, journal: night)
 
     puts "Put the screen away and relax for a while. Sleep well!"
 end 

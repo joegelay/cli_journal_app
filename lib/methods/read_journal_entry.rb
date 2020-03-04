@@ -1,6 +1,6 @@
 def read_journal_entry 
     ask_for_date
-    puts "#{@selected_entry[0].content} \nMood: #{@selected_entry[0].mood}"  
+    puts "Content: #{@selected_entry[0].content.join("\n")} \nMood: #{@selected_entry[0].mood}"  
 end 
 
 def ask_for_date
