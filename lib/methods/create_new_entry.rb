@@ -9,6 +9,7 @@ def create_new_entry
     else 
         night_entry 
     end 
+    main_menu
 end 
 
 

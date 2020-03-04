@@ -72,4 +72,6 @@ def update_journal_entry
             end 
         end   
     end 
+    puts "Journal updated and saved!"
+    main_menu
 end 
