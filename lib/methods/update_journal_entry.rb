@@ -1,7 +1,8 @@
 def update_journal_entry 
     prompt = TTY::Prompt.new
-    read_journal_entry 
-
+    ask_for_date
+    puts "Content: #{@selected_entry[0].content.join("\n")} \nMood: #{@selected_entry[0].mood}"  
+    
     section_to_update = prompt.select("Which section would you like to update", ["Content", "Mood"])
     if section_to_update == "Mood"
         puts "Please update your mood score below..."
