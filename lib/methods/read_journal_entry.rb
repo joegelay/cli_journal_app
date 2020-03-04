@@ -20,9 +20,9 @@ def select_entry
         puts "Looks like you don't have any entries from that day! Choose another day..."
         ask_for_date
     else 
-        journal_type = prompt.select("Which journal from #{@date} would you like to see?", ["Morning", "Afternoon", "Night"])
+        journal_type = prompt.select("Which journal from #{@date} would you like to select?", ["Morning", "Afternoon", "Night"])
         @selected_entry = @user_date_entries.select { |entry| entry.journal.name == journal_type }
-        #add in fucntionality for if journal doesn't exist 
+        #add fucntionality for if journal doesn't exist 
     end 
 end 
 

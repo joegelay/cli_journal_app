@@ -24,13 +24,15 @@ class Cli
         prompt = TTY::Prompt.new
 
         selection = prompt.select("What would you like to do?", ["Create a new journal entry", "Read a past journal entry", 
-            "Update a journal entry", "Delete a journal entry", "Exit"])
+            "Update a journal entry", "Delete a journal entry", "Close journal"])
         if selection == "Create a new journal entry"
             create_new_entry
         elsif selection == "Read a past journal entry"
             read_journal_entry
         elsif selection == "Update a journal entry"
             update_journal_entry
+        elsif selection == "Delete a journal entry"
+            delete_journal_entry 
         end 
     end 
 end 
