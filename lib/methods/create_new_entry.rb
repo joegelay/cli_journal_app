@@ -1,3 +1,5 @@
+# move classes into a models folder 
+
 def create_new_entry 
     prompt = TTY::Prompt.new
     selection = prompt.select("Right on! What kind of journal would you like to create?", ["Morning", "Afternoon", 
@@ -15,6 +17,7 @@ end
 
 def morning_entry 
     morning = Journal.all.find { |journal| journal.name == "Morning" }
+    # helper method to pass in relevant journal
 
     content = []
 
