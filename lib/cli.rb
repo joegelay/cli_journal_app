@@ -27,6 +27,8 @@ class Cli
             "Update a journal entry", "Delete a journal entry"])
         if selection == "Create a new journal entry"
             create_new_entry
+        elsif selection == "Read a past journal entry"
+            read_journal_entry
         end 
     end 
 end 
