@@ -1,5 +1,6 @@
 def read_journal_entry 
     ask_for_date
+    puts "#{@selected_entry[0].content} \nMood: #{@selected_entry[0].mood}"  
 end 
 
 def ask_for_date
@@ -19,8 +20,7 @@ def select_entry
         ask_for_date
     else 
         journal_type = prompt.select("Which journal from #{@date} would you like to see?", ["Morning", "Afternoon", "Night"])
-        view_entry = @user_date_entries.select { |entry| entry.journal.name == journal_type }
-        puts "#{view_entry[0].content} \nMood: #{view_entry[0].mood}"  
+        @selected_entry = @user_date_entries.select { |entry| entry.journal.name == journal_type }
     end 
 end 
 
