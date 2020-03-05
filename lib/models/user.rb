@@ -19,7 +19,17 @@ class User < ActiveRecord::Base
             update_journal_shows_entry
         when "Delete a journal entry"
             delete_journal_entry 
+        when "Close journal"
+            close_journal
         end 
+    end 
+
+    def close_journal
+        puts `clear`
+        font = TTY::Font.new(:standard)
+        puts "\n"
+        puts font.write("SEE  YA  SOON", letter_spacing: 0)
+        puts "\n"
     end 
 
     def create_new_entry 
@@ -60,7 +70,7 @@ class User < ActiveRecord::Base
         
         new_journal_entry(content, mood_response, morning)
         
-        puts "Thank you for sharing! Have a great day!"
+        puts "\nThank you for sharing! Have a great day! 🌞\n\n"
     end 
     
     def afternoon_entry 
@@ -266,8 +276,6 @@ class User < ActiveRecord::Base
     end 
     
     def delete_journal_entry 
-        binding.pry
-
         ask_for_date
         selected_entry[0].destroy 
         puts "Consider it torn up and burned! 🔥"
