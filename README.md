@@ -29,10 +29,7 @@ gem "tty-prompt", "~> 0.20.0"
 
 ## Authors
 
-Joe Gelay  
 [@joegelay](https://github.com/joegelay)
-
-Josh Couper 
 [@jcouper](https://github.com/jcouper)
 
 ## License
