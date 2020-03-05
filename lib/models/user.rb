@@ -198,7 +198,7 @@ class User < ActiveRecord::Base
             mood_response = prompt.select("How are you feeling (1-5)?", [1,2,3,4,5])
             selected_entry[0].mood = mood_response 
             selected_entry[0].save
-            puts "Mood updated! Hope you changed it for the better 😎"
+            puts "\nMood updated! Hope you changed it for the better 😎\n\n"
             main_menu
         else
             update_journal_content
@@ -271,7 +271,7 @@ class User < ActiveRecord::Base
                 selected_entry[0].save
             end 
         end   
-        puts "Journal updated and saved!"
+        puts "\nJournal updated and saved!\n\n"
         main_menu
     end 
     
