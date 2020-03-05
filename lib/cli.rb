@@ -1,10 +1,7 @@
 require 'tty-prompt'
 
 class Cli
-
     attr_reader :current_user
-
-    ActiveRecord::Base.logger.level = 1 
 
     def welcome
         puts "Hello! What is your full name?" 

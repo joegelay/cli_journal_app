@@ -271,6 +271,12 @@ class User < ActiveRecord::Base
         puts "Consider it torn up and burned! 🔥"
         main_menu
     end 
+
+    def mood_stuff
+        # user can get average mood across all journals 
+        # user can output a COUNT of journals GROUPED BY mood 
+        # user can return dates where mood was a specified number 
+    end 
 end 
 
    
