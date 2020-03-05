@@ -276,6 +276,7 @@ class User < ActiveRecord::Base
     end 
     
     def delete_journal_entry 
+        binding.pry
         ask_for_date
         selected_entry[0].destroy 
         puts "Consider it torn up and burned! 🔥"
@@ -286,7 +287,13 @@ class User < ActiveRecord::Base
         mood_score = self.entries.average(:mood)
         mood_score.round 
     end 
-        # user can get average mood across all journals 
+    
+    def mood_count
+        result = self.entries.group(:mood).count
+        result.each do |mood_level, count|
+            puts "\nMood level: #{mood_level} - Count: #{count}\n"
+        end 
+    end 
         # user can output a COUNT of journals GROUPED BY mood 
         # user can return dates where mood was a specified number 
 end 
