@@ -117,36 +117,6 @@ class User < ActiveRecord::Base
         puts "Put the screen away and relax for a while. Sleep well!"
     end 
 
-        #READ FUNCTIONALITY STARTS BELOW
-
-    def read_journal_entry 
-        ask_for_date
-        puts "Content: #{@selected_entry[0].content.join("\n")} \nMood: #{@selected_entry[0].mood}"  
-        main_menu
-    end 
-    
-    def ask_for_date
-        prompt = TTY::Prompt.new
-        @date = prompt.ask("What date do you want to search? (MM/DD/YYYY)") do |q|
-                q.validate(/^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/, "Invalid date format, let's try that again...")
-        end 
-        date_entries = Entry.select { |entry| entry.created_at.strftime("%m/%d/%Y") == @date }
-        @user_date_entries = date_entries.select { |entry| entry.user == @current_user }
-        select_entry
-    end 
-    
-    def select_entry
-        prompt = TTY::Prompt.new
-        if @user_date_entries.length < 1
-            puts "Looks like you don't have any entries from that day! Choose another day..."
-            ask_for_date
-        else 
-            journal_type = prompt.select("Which journal from #{@date} would you like to select?", ["Morning", "Afternoon", "Night"])
-            @selected_entry = @user_date_entries.select { |entry| entry.journal.name == journal_type }
-            #add fucntionality for if journal doesn't exist 
-        end 
-    end 
-
     #READ FUNCTIONALITY STARTS BELOW
 
     def read_journal_entry 
@@ -164,16 +134,28 @@ class User < ActiveRecord::Base
         @user_date_entries = date_entries.select { |entry| entry.user == self }
         select_entry
     end 
-    
+
     def select_entry
         prompt = TTY::Prompt.new
         if @user_date_entries.length < 1
             puts "Looks like you don't have any entries from that day! Choose another day..."
             ask_for_date
         else 
-            journal_type = prompt.select("Which journal from #{@date} would you like to select?", ["Morning", "Afternoon", "Night"])
-            @selected_entry = @user_date_entries.select { |entry| entry.journal.name == journal_type }
-            #add fucntionality for if journal doesn't exist 
+            ask_for_journal
         end 
     end 
+
+    def ask_for_journal
+        prompt = TTY::Prompt.new
+        journal_type = prompt.select("Which journal from #{@date} would you like to select?", ["Morning", "Afternoon", "Night"])
+        @selected_entry = @user_date_entries.select { |entry| entry.journal.name == journal_type }
+        if @selected_entry.length < 1 
+            puts "Whoops! You don't have a journal of that type on this day. Choose a different journal."
+            ask_for_journal
+        end
+    end 
+    
+
 end 
+
+   
