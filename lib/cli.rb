@@ -11,10 +11,10 @@ class Cli
         @current_user = User.find_or_create_by(name: user_name)
 
         if name_check
-            puts "Welcome back, #{user_name}!"
+            puts "\nWelcome back, #{user_name.split(" ").first}!"
             current_user.main_menu
         else
-            puts "Whatsup, #{user_name}?! Welcome to Journal App!"
+            puts "\nWhatsup, #{user_name.split(" ").first}?! Welcome to Journal App!"
             current_user.main_menu
         end     
     end 

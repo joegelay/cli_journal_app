@@ -1,7 +1,7 @@
 require_relative 'config/environment'
 require 'tty-prompt'
 
-# binding.pry
+puts `clear`
 
 Cli.new.welcome
 
