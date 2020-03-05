@@ -1,8 +1,12 @@
 require 'tty-prompt'
 
-class Cli
-
+class Cli 
+    attr_reader :user_name
     ActiveRecord::Base.logger.level = 1 
+
+    def initialize(user_name)
+        @user_name = user_name
+    end 
 
     def welcome
         if @name_check
