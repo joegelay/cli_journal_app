@@ -39,8 +39,3 @@ gem "tty-prompt", "~> 0.20.0"
 ## License
 
 This project is open to the public. No license is required for use.
-
-
-
-
-

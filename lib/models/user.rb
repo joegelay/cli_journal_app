@@ -142,7 +142,6 @@ class User < ActiveRecord::Base
         puts "\n\n"
     end 
 
-    #READ FUNCTIONALITY STARTS BELOW
     def read_journal_entry 
         ask_for_date
         puts "\n~~~~~~~~~~~~~~~~~~\nContent:\n\n#{selected_entry[0].content.join("\n\n")}\n\nMood: #{selected_entry[0].mood}\n~~~~~~~~~~~~~~~~~~\n\n"
@@ -179,7 +178,6 @@ class User < ActiveRecord::Base
         end
     end 
 
-    # UPDATE BELOW
     def update_journal_shows_entry
         prompt = TTY::Prompt.new
         ask_for_date
@@ -310,7 +308,6 @@ class User < ActiveRecord::Base
         mood_menu
     end 
 
-    # user can output a COUNT of journals GROUPED BY mood 
     def mood_count
         puts "\nHere are how many journal entries you have for each mood...\n\n"
 
