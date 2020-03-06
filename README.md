@@ -27,6 +27,10 @@ gem "tty-prompt", "~> 0.20.0"
 * Run ``` rake db:seed ```
 * Run ``` ruby runner.rb ```
 
+## Video Demo
+
+[![CLI Journal App Overview Video](https://img.youtube.com/vi/G5__x6t5CQs/0.jpg)](https://www.youtube.com/watch?v=G5__x6t5CQs)
+
 ## Authors
 
 [@joegelay](https://github.com/joegelay)
@@ -35,3 +39,8 @@ gem "tty-prompt", "~> 0.20.0"
 ## License
 
 This project is open to the public. No license is required for use.
+
+
+
+
+
