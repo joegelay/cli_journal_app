@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
         prompt = TTY::Prompt.new
 
         selection = prompt.select("What would you like to do?", ["Create a new journal entry", "Read a past journal entry", 
-            "Update a journal entry", "Delete a journal entry", "Close journal"])
+            "Update a journal entry", "Delete a journal entry", "Mood analytics", "Close journal"])
 
         case selection 
         when "Create a new journal entry"
@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
             update_journal_shows_entry
         when "Delete a journal entry"
             delete_journal_entry 
+        when "Mood analytics"
+            mood_menu
         when "Close journal"
             close_journal
         end 
@@ -276,26 +278,64 @@ class User < ActiveRecord::Base
     end 
     
     def delete_journal_entry 
-        binding.pry
         ask_for_date
         selected_entry[0].destroy 
         puts "Consider it torn up and burned! 🔥"
         main_menu
     end 
 
-    def average_mood
-        mood_score = self.entries.average(:mood)
-        mood_score.round 
-    end 
-    
-    def mood_count
-        result = self.entries.group(:mood).count
-        result.each do |mood_level, count|
-            puts "\nMood level: #{mood_level} - Count: #{count}\n"
+
+    def mood_menu
+        prompt = TTY::Prompt.new
+
+        selection = prompt.select("What would you like to know?", ["My average mood across all journal entries", 
+            "See how many journal entries I have for each mood", "See journal entries where my mood was a ___ ",
+            "Go back to main menu"])
+
+        case selection 
+        when "My average mood across all journal entries"
+            average_mood
+        when "See how many journal entries I have for each mood"
+            mood_count
+        when "See journal entries where my mood was a ___ "
+            mood_date
+        when "Go back to main menu"
+            main_menu
         end 
     end 
-        # user can output a COUNT of journals GROUPED BY mood 
-        # user can return dates where mood was a specified number 
+
+    def average_mood
+        mood_score = self.entries.average(:mood)
+        puts "\nYour average mood across all journal entries is #{mood_score.round}.\n\n"
+        mood_menu
+    end 
+
+    # user can output a COUNT of journals GROUPED BY mood 
+    def mood_count
+        puts "\nHere are how many journal entries you have for each mood...\n\n"
+
+        result = self.entries.group(:mood).count
+        result.each do |mood_level, count|
+            puts "\nMood level: #{mood_level} - Count: #{count}\n\n"
+        end 
+        puts "\n"
+        mood_menu
+    end 
+
+    def mood_date
+        prompt = TTY::Prompt.new
+
+        mood_number = prompt.select("\nSelect a mood score to see all journal entries of...", [1,2,3,4,5])
+
+        puts "\nHere are the journal entries where your mood was a #{mood_number}...\n\n"
+
+        result = self.entries.where("mood = ?", mood_number)
+        result.each do |entry|
+            puts "#{entry.created_at.strftime("%m/%d/%Y")} - #{entry.journal.name}\n"
+        end 
+        puts "\n"
+        mood_menu
+    end 
 end 
 
    
